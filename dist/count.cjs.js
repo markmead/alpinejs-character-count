@@ -1,0 +1,1 @@
+var i=Object.defineProperty;var x=t=>i(t,"__esModule",{value:!0});var d=(t,e)=>{x(t);for(var n in e)i(t,n,{get:e[n],enumerable:!0})};d(exports,{default:()=>p});function o(t){t.directive("count",(e,{expression:n,modifiers:u},{evaluateLater:a,effect:c})=>{let l=u[0]||!1,f=a(n);c(()=>{f(g=>{let r=g.length;e.innerText=l?l-r:r})})})}var p=o;0&&(module.exports={});

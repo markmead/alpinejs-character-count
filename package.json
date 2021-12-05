@@ -1,0 +1,21 @@
+{
+  "name": "alpinejs-character-count",
+  "version": "1.0.0",
+  "description": "Get the character count of a HTML input and display it to the user.",
+  "keywords": [
+    "Alpine",
+    "Alpine JS",
+    "Alpine JS Plugins"
+  ],
+  "author": "Mark Mead",
+  "license": "MIT",
+  "main": "dist/count.cjs.js",
+  "module": "dist/count.esm.js",
+  "unpkg": "dist/count.min.js",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.12.22"
+  }
+}
