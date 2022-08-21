@@ -2,7 +2,7 @@
 
 Alpine JS plugin `x-count` returns the character count of a given HTML input 🧛‍♂️
 
-## Example 👀
+## Example
 
 ```html
 <div x-data="{ message: 'Hello' }">
@@ -17,20 +17,35 @@ Alpine JS plugin `x-count` returns the character count of a given HTML input �
 This will return the following:
 
 ```html
-<p>You have written 5 characters.</p>
-<p>You have 45 characters remaining</p>
+<p>You have written 5 characters.</p> <p>You have 45 characters remaining</p>
 ```
 
-The modifier in the example `50` is the max character count which you can pair up with the `max` or `maxlength` attribute on the HTML input.
+The modifier in the example `50` is the max character count which you can pair up with the `maxlength` attribute on the HTML input. If you want a more dynamic approach to this, you can do the following.
 
-## Install 🌟
+### Using Alpine JS Refs
 
-It's very easy to install Alpine JS plugins! 🙌
+```html
+<div x-data="{ message: 'Hello' }">
+  <textarea x-model="message" maxlength="100" x-ref="textarea"></textarea>
+
+  <p>You have written <span x-count="message"></span> characters.</p>
+
+  <p>You have <span x-count.textarea="message"></span> characters remaining.</p>
+</div>
+```
+
+Instead of passing the max character count as the modifier, you pass the name of an Alpine JS `x-ref`.
+
+## Install
 
 ### CDN
 
 ```html
-<script src="https://unpkg.com/alpinejs-character-count@1.0.0/dist/count.min.js"></script>
+<script
+  defer
+  src="https://unpkg.com/alpinejs-character-count@latest/dist/count.min.js"
+></script>
+
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
@@ -45,19 +60,17 @@ yarn add -D alpinejs-character-count
 Then you can register the plugin.
 
 ```js
-import Alpine from "alpinejs";
-import count from "alpinejs-character-count";
+import Alpine from 'alpinejs'
+import count from 'alpinejs-character-count'
 
-Alpine.plugin(count);
+Alpine.plugin(count)
 
-window.Alpine = Alpine;
+window.Alpine = Alpine
 
-Alpine.start();
+Alpine.start()
 ```
 
-### Stats 📊
-
-Here's some stats about the Alpine JS Character Count package! As you can see, it's tiny 🤏
+### Stats
 
 ![](https://img.shields.io/bundlephobia/min/alpinejs-character-count)
 ![](https://img.shields.io/npm/v/alpinejs-character-count)

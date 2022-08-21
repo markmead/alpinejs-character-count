@@ -1,17 +1,24 @@
 export default function (Alpine) {
   Alpine.directive(
-    "count",
+    'count',
     (el, { expression, modifiers }, { evaluateLater, effect }) => {
-      let maxLength = modifiers[0] || false;
-      let getInputValue = evaluateLater(expression);
+      let firstModifier = modifiers[0]
+      let modifierNumber = Number(firstModifier)
+      let modifierTarget =
+        !modifierNumber && document.querySelector(`[x-ref="${firstModifier}"]`)
+
+      let getInputValue = evaluateLater(expression)
 
       effect(() => {
         getInputValue((string) => {
-          let stringLength = string.length;
+          let stringLength = string.length
+          let maxLength = modifierTarget
+            ? modifierTarget.maxLength
+            : modifierNumber
 
-          el.innerText = maxLength ? maxLength - stringLength : stringLength;
-        });
-      });
+          el.innerText = maxLength ? maxLength - stringLength : stringLength
+        })
+      })
     }
-  );
+  )
 }
