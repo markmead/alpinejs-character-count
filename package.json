@@ -9,7 +9,6 @@
   ],
   "author": "Mark Mead",
   "license": "MIT",
-  "main": "dist/count.cjs.js",
   "module": "dist/count.esm.js",
   "unpkg": "dist/count.min.js",
   "scripts": {

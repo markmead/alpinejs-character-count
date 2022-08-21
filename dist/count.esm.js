@@ -1,1 +1,1 @@
-function l(o){o.directive("count",(u,{expression:f,modifiers:m},{evaluateLater:d,effect:c,Alpine:a})=>{let e=m[0],t=Number(e),r=!t&&document.querySelector(`[x-ref="${e}"]`),g=d(f);c(()=>{g(x=>{let i=x.length,n=r?r.maxLength:t;u.innerText=n?n-i:i})})})}var s=l;export{s as default};
+function o(l){l.directive("count",(u,{expression:f,modifiers:m},{evaluateLater:d,effect:c})=>{let e=m[0],t=Number(e),r=!t&&document.querySelector(`[x-ref="${e}"]`),g=d(f);c(()=>{g(x=>{let i=x.length,n=r?r.maxLength:t;u.innerText=n?n-i:i})})})}var p=o;export{p as default};

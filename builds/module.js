@@ -1,3 +1,3 @@
-import count from "../src/index.js";
+import count from '../src/index.js'
 
-export default count;
+export default count
