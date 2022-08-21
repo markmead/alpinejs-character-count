@@ -1,7 +1,7 @@
 export default function (Alpine) {
   Alpine.directive(
     'count',
-    (el, { expression, modifiers }, { evaluateLater, effect, Alpine }) => {
+    (el, { expression, modifiers }, { evaluateLater, effect }) => {
       let firstModifier = modifiers[0]
       let modifierNumber = Number(firstModifier)
       let modifierTarget =
