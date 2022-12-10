@@ -1,11 +1,15 @@
 {
   "name": "alpinejs-character-count",
-  "version": "1.0.1",
-  "description": "Get the character count of a HTML input and display it to the user.",
+  "version": "1.0.2",
+  "description": "Track the character count of an input with the option to compare against the max length 🔟",
   "keywords": [
     "Alpine",
     "Alpine JS",
-    "Alpine JS Plugins"
+    "Alpine JS Plugins",
+    "Alpine JS Forms",
+    "Alpine JS Character Count",
+    "JavaScript Character Count",
+    "Input Character Count"
   ],
   "author": "Mark Mead",
   "license": "MIT",
@@ -15,6 +19,6 @@
     "build": "node scripts/build.js"
   },
   "devDependencies": {
-    "esbuild": "^0.12.22"
+    "esbuild": "^0.16.2"
   }
 }
