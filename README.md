@@ -1,6 +1,7 @@
 # Alpine JS Character Count
 
-Alpine JS plugin `x-count` returns the character count of a given HTML input 🧛‍♂️
+Track the character count of an input with the option to compare against the max
+length 🔟
 
 ## Example
 
@@ -20,7 +21,9 @@ This will return the following:
 <p>You have written 5 characters.</p> <p>You have 45 characters remaining</p>
 ```
 
-The modifier in the example `50` is the max character count which you can pair up with the `maxlength` attribute on the HTML input. If you want a more dynamic approach to this, you can do the following.
+The modifier in the example `50` is the max character count which you can pair
+up with the `maxlength` attribute on the HTML input. If you want a more dynamic
+approach to this, you can do the following.
 
 ### Using Alpine JS Refs
 
@@ -34,7 +37,8 @@ The modifier in the example `50` is the max character count which you can pair u
 </div>
 ```
 
-Instead of passing the max character count as the modifier, you pass the name of an Alpine JS `x-ref`.
+Instead of passing the max character count as the modifier, you pass the name of
+an Alpine JS `x-ref`.
 
 ## Install
 
