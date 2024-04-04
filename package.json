@@ -1,6 +1,6 @@
 {
   "name": "alpinejs-character-count",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Track the character count of an input with the option to compare against the max length 🔟",
   "keywords": [
     "Alpine",
@@ -19,6 +19,6 @@
     "build": "node scripts/build.js"
   },
   "devDependencies": {
-    "esbuild": "^0.16.2"
+    "esbuild": "^0.20.2"
   }
 }
