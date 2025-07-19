@@ -15,7 +15,6 @@ support for maximum length validation and remaining character calculations.
 - 📏 **Flexible limits** - Static numbers, Alpine.js refs, or maxlength
   attributes
 - 🎯 **Multiple displays** - Show character count or remaining characters
-- 📱 **Universal** - Works with inputs, textareas, and contenteditable elements
 - 🚫 **Zero dependencies** - Only requires Alpine.js
 
 ## 📦 Installation
