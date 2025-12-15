@@ -1,6 +1,6 @@
 {
   "name": "alpinejs-character-count",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Track the character count of an input with the option to compare against the max length 🔟",
   "keywords": [
     "alpinejs",
@@ -34,8 +34,8 @@
     "prebuild": "npm run lint"
   },
   "devDependencies": {
-    "@eslint/js": "^9.31.0",
-    "esbuild": "^0.25.0",
-    "eslint": "^9.31.0"
+    "@eslint/js": "^9.39.2",
+    "esbuild": "^0.27.1",
+    "eslint": "^9.39.2"
   }
 }
