@@ -1,9 +1,8 @@
 # Alpine JS Character Count
 
-[![](https://img.shields.io/npm/v/alpinejs-character-count)](https://www.npmjs.com/package/alpinejs-character-count)
-[![](https://img.shields.io/bundlephobia/min/alpinejs-character-count)](https://bundlephobia.com/package/alpinejs-character-count)
-[![](https://img.shields.io/npm/dt/alpinejs-character-count)](https://www.npmjs.com/package/alpinejs-character-count)
-[![](https://img.shields.io/github/license/markmead/alpinejs-character-count)](https://github.com/markmead/alpinejs-character-count/blob/main/LICENSE)
+![](https://img.shields.io/npm/v/alpinejs-character-count)
+![](https://img.shields.io/npm/dt/alpinejs-character-count)
+![](https://img.shields.io/github/license/markmead/alpinejs-character-count)
 
 A lightweight Alpine.js plugin for tracking and displaying character counts with
 support for maximum length validation and remaining character calculations.
