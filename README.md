@@ -64,9 +64,9 @@ Alpine.start()
 
 ```html
 <div x-data="{ message: 'Hello' }">
-  <textarea x-model="message"></textarea>
+  <textarea x-model="message" aria-describedby="message-count"></textarea>
 
-  <p>Characters: <span x-count="message"></span></p>
+  <p id="message-count">Characters: <span x-count="message"></span></p>
 </div>
 ```
 
@@ -74,10 +74,10 @@ Alpine.start()
 
 ```html
 <div x-data="{ message: 'Hello' }">
-  <textarea x-model="message"></textarea>
+  <textarea x-model="message" aria-describedby="message-remaining"></textarea>
 
   <p>Characters: <span x-count="message"></span>/50</p>
-  <p>Remaining: <span x-count.50="message"></span></p>
+  <p id="message-remaining">Remaining: <span x-count.50="message"></span></p>
 </div>
 ```
 
@@ -85,10 +85,15 @@ Alpine.start()
 
 ```html
 <div x-data="{ message: 'Hello' }">
-  <textarea x-model="message" maxlength="100" x-ref="textarea"></textarea>
+  <textarea
+    x-model="message"
+    maxlength="100"
+    x-ref="textarea"
+    aria-describedby="message-remaining"
+  ></textarea>
 
   <p>Characters: <span x-count="message"></span></p>
-  <p>Remaining: <span x-count.textarea="message"></span></p>
+  <p id="message-remaining">Remaining: <span x-count.textarea="message"></span></p>
 </div>
 ```
 
@@ -110,10 +115,11 @@ _This example uses Tailwind CSS for styling but that is not required._
       id="post"
       x-model="message"
       placeholder="Share your thoughts..."
+      aria-describedby="post-count"
       class="w-full border-gray-300 shadow-sm rounded mt-1"
     ></textarea>
 
-    <p class="text-gray-700 text-sm mt-1.5">
+    <p id="post-count" class="text-gray-700 text-sm mt-1.5">
       <span
         x-count="message"
         class="font-medium"
@@ -123,6 +129,9 @@ _This example uses Tailwind CSS for styling but that is not required._
         }"
       ></span
       >/<span x-text="maxLength"></span> characters
+      <span x-show="message.length > maxLength" class="font-medium text-red-600">
+        — over limit
+      </span>
     </p>
   </div>
 
@@ -164,10 +173,11 @@ from the referenced element.
   <textarea
     x-model="content"
     maxlength="100"
+    aria-describedby="content-count"
     class="w-full border-gray-300 shadow-sm rounded"
   ></textarea>
 
-  <div class="text-sm mt-1 text-gray-700">
+  <div id="content-count" class="text-sm mt-1 text-gray-700">
     <span x-count="content"></span>/100 characters (<span
       x-count.100="content"
     ></span>
@@ -183,11 +193,12 @@ from the referenced element.
   <textarea
     x-model="message"
     maxlength="200"
+    aria-describedby="message-count"
     class="w-full border-gray-300 shadow-sm rounded"
   ></textarea>
 
   <div class="mt-1.5">
-    <div class="flex justify-between text-xs text-gray-700">
+    <div id="message-count" class="flex justify-between text-xs text-gray-700">
       <span><span x-count="message"></span> characters</span>
       <span><span x-count.200="message"></span> remaining</span>
     </div>
@@ -201,6 +212,20 @@ from the referenced element.
   </div>
 </div>
 ```
+
+## ♿ Accessibility
+
+- **Associate the count with its input.** Give the element holding the count an
+  `id` and point the input's `aria-describedby` at it (as every example above
+  does), so screen reader users hear the count when they focus the field.
+- **Leave it as passive text — don't force `aria-live`.** A character count that
+  updates on every keystroke is a passive status, not an announcement. Wrapping
+  it in `aria-live="polite"` makes assistive tech read out the number on every
+  keypress, which is noise. If you genuinely need the *remaining* count announced
+  near the limit, debounce it and only announce as the limit approaches.
+- **Never signal the limit with colour alone.** The complete example turns the
+  count red past `maxLength`, but also shows an "over limit" text cue — colour on
+  its own is invisible to colour-blind users and screen readers.
 
 ## 🌐 Browser Support
 
