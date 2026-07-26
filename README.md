@@ -223,8 +223,7 @@ from the referenced element.
 - **Associate the count with its input.** Give the element holding the count an
   `id` and point the input's `aria-describedby` at it (as every example above
   does), so screen reader users hear the count when they focus the field.
-- **Leave it as passive text — don't force `aria-live`.** The count changes on
-  every keystroke, so assistive tech would announce the number on every keypress.
+- **Leave it as passive text — don't force `aria-live`.** If you mark the count as `aria-live="polite"`, assistive tech may announce the number on every keypress.
   If you do need the *remaining* count announced, debounce it and only announce
   as the limit approaches.
 - **Never signal the limit with colour alone.** The complete example turns the
