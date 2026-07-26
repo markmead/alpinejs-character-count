@@ -31,7 +31,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "lint": "eslint . --fix",
-    "prebuild": "pnpm run lint"
+    "prebuild": "eslint . --fix"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
