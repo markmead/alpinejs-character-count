@@ -74,10 +74,13 @@ Alpine.start()
 
 ```html
 <div x-data="{ message: 'Hello' }">
-  <textarea x-model="message" aria-describedby="message-remaining"></textarea>
+  <textarea
+    x-model="message"
+    aria-describedby="limit-count limit-remaining"
+  ></textarea>
 
-  <p>Characters: <span x-count="message"></span>/50</p>
-  <p id="message-remaining">Remaining: <span x-count.50="message"></span></p>
+  <p id="limit-count">Characters: <span x-count="message"></span>/50</p>
+  <p id="limit-remaining">Remaining: <span x-count.50="message"></span></p>
 </div>
 ```
 
@@ -89,11 +92,11 @@ Alpine.start()
     x-model="message"
     maxlength="100"
     x-ref="textarea"
-    aria-describedby="message-remaining"
+    aria-describedby="refs-count refs-remaining"
   ></textarea>
 
-  <p>Characters: <span x-count="message"></span></p>
-  <p id="message-remaining">Remaining: <span x-count.textarea="message"></span></p>
+  <p id="refs-count">Characters: <span x-count="message"></span></p>
+  <p id="refs-remaining">Remaining: <span x-count.textarea="message"></span></p>
 </div>
 ```
 
@@ -103,7 +106,11 @@ _This example uses Tailwind CSS for styling but that is not required._
 
 ```html
 <div
-  x-data="{ message: '', maxLength: 280 }"
+  x-data="{
+    message: '',
+    maxLength: 280,
+    get isOver() { return this.message.length > this.maxLength },
+  }"
   class="max-w-3xl mx-auto space-y-4"
 >
   <div>
@@ -124,20 +131,18 @@ _This example uses Tailwind CSS for styling but that is not required._
         x-count="message"
         class="font-medium"
         :class="{
-          'text-red-600': message.length > maxLength,
-          'text-yellow-600': message.length > maxLength * 0.9 && message.length <= maxLength,
+          'text-red-600': isOver,
+          'text-yellow-600': !isOver && message.length > maxLength * 0.9,
         }"
       ></span
       >/<span x-text="maxLength"></span> characters
-      <span x-show="message.length > maxLength" class="font-medium text-red-600">
-        — over limit
-      </span>
+      <span x-show="isOver" class="font-medium text-red-600">— over limit</span>
     </p>
   </div>
 
   <div class="flex justify-end">
     <button
-      :disabled="message.length === 0 || message.length > maxLength"
+      :disabled="message.length === 0 || isOver"
       class="px-3 py-1.5 bg-blue-600 text-sm font-medium text-white rounded disabled:opacity-50 disabled:cursor-not-allowed"
     >
       Publish
@@ -193,12 +198,12 @@ from the referenced element.
   <textarea
     x-model="message"
     maxlength="200"
-    aria-describedby="message-count"
+    aria-describedby="progress-count"
     class="w-full border-gray-300 shadow-sm rounded"
   ></textarea>
 
   <div class="mt-1.5">
-    <div id="message-count" class="flex justify-between text-xs text-gray-700">
+    <div id="progress-count" class="flex justify-between text-xs text-gray-700">
       <span><span x-count="message"></span> characters</span>
       <span><span x-count.200="message"></span> remaining</span>
     </div>
@@ -218,11 +223,9 @@ from the referenced element.
 - **Associate the count with its input.** Give the element holding the count an
   `id` and point the input's `aria-describedby` at it (as every example above
   does), so screen reader users hear the count when they focus the field.
-- **Leave it as passive text — don't force `aria-live`.** A character count that
-  updates on every keystroke is a passive status, not an announcement. Wrapping
-  it in `aria-live="polite"` makes assistive tech read out the number on every
-  keypress, which is noise. If you genuinely need the *remaining* count announced
-  near the limit, debounce it and only announce as the limit approaches.
+- **Leave it as passive text — don't force `aria-live`.** If you mark the count as `aria-live="polite"`, assistive tech may announce the number on every keypress.
+  If you do need the *remaining* count announced, debounce it and only announce
+  as the limit approaches.
 - **Never signal the limit with colour alone.** The complete example turns the
   count red past `maxLength`, but also shows an "over limit" text cue — colour on
   its own is invisible to colour-blind users and screen readers.
@@ -236,3 +239,20 @@ polyfills or dependencies are required.
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major
 changes, please open an issue first to discuss what you would like to change.
+
+### Local development
+
+This project uses [pnpm](https://pnpm.io) — please don't install with npm or
+yarn, as that produces a competing lockfile and skips the install policy in
+`pnpm-workspace.yaml` (a 48h hold on freshly published versions, and the
+allowlist for esbuild's build script).
+
+```bash
+pnpm install
+pnpm build # lints, then bundles to dist/
+pnpm lint
+```
+
+None of this reaches consumers — the published tarball ships only `dist/`,
+`src/` and `builds/` (plus `package.json`, `README.md` and `LICENSE`), and the
+plugin has zero runtime dependencies.
